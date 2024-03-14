@@ -51,7 +51,6 @@ var conf = {
 		"id": "85",
 		"time": "180"
 	},
-    	},
   	{
 		"src": "https://vod.qiecdn.com/m3u8/20181220/live-10005196rtfVY7Bv--20181220083209_ebbcdcd71-1080.m3u8",
 		"id": "85",
