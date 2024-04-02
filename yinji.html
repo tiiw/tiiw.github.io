@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Redirect to Multiple URLs with Fixed Mark</title>
+</head>
+<body>
+ <script>
+        function redirectToUrlsWithFixedMark(url) {
+            const mark = url.split("#")[1];
+            const targetUrls = [
+                "https://www.example2.com#" + mark,
+                "https://www.example3.com#" + mark
+            ];
+
+            targetUrls.forEach(targetUrl => {
+                window.open(targetUrl, '_blank');
+            });
+        }
+
+        // 示例：调用redirectToUrlsWithFixedMark函数，传入带有固定印记的URL
+        redirectToUrlsWithFixedMark("https://www.example1.com#mark");
+    </script>
+</body>
+</html>
