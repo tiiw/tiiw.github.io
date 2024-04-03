@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Redirect</title>
+</head>
+<body>
+  <script>
+        function randomRedirect(urls) {
+            const chosenUrl = urls[Math.floor(Math.random() * urls.length)];
+            window.location.href = chosenUrl;
+        }
+
+        // 示例参数
+        const urls = [
+            "https://www.example1.com",
+            "https://www.example2.com",
+            "https://www.example3.com",
+            "https://www.example4.com",
+        ];
+
+        // 从 URL 参数中获取跳转链接列表
+        const params = new URLSearchParams(window.location.search);
+        const redirectUrls = params.get('urls');
+
+        if (redirectUrls) {
+            // 如果 URL 参数中存在跳转链接列表，则使用该列表进行跳转
+            const decodedUrls = JSON.parse(decodeURIComponent(redirectUrls));
+            randomRedirect(decodedUrls);
+        } else {
+            // 如果 URL 参数中不存在跳转链接列表，则使用默认列表进行跳转
+            randomRedirect(urls);
+        }
+    </script>
+</body>
+</html>
